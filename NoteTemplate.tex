@@ -1,0 +1,125 @@
+\documentclass[12pt,a4paper,openany,fontset=none]{ctexbook}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+% 页面设置
+ \usepackage{geometry}
+ \geometry{
+     paperheight=260mm,
+     paperwidth=185mm,
+     top=20mm,
+     bottom=25mm,
+     left=20mm,
+     right=20mm
+ }
+
+% 字体设置
+ \setmainfont{XITS}  % 英文字体， Times 风格
+ \setCJKmainfont{FZShuSong-Z01.ttf}[         % 方正书宋_GBK
+     BoldFont=Source Han Serif SC Bold.otf,  % 思源宋体粗体
+     ItalicFont=FZKai-Z03.ttf                % 方正楷体_GBK
+     ]
+ \setCJKsansfont{FZHei-B01.ttf}[             % 方正黑体_GBK
+     BoldFont=Source Han Sans SC Bold.otf    % 思源黑体粗体
+     ]
+ \setCJKmonofont{FZFangSong-Z02.ttf}         % 方正仿宋_GBK
+
+ \setCJKfamilyfont{zhsong}{FZShuSong-Z01.ttf}
+ \setCJKfamilyfont{zhxbs}{Source Han Serif SC Bold.otf}
+ \setCJKfamilyfont{zhdbs}{Source Han Serif SC Heavy.otf}
+ \setCJKfamilyfont{zhhei}{FZHei-B01.ttf}
+ \setCJKfamilyfont{zhdh}{Source Han Sans SC Bold.otf}
+ \setCJKfamilyfont{zhfs}{FZFangSong-Z02.ttf}
+ \setCJKfamilyfont{zhkai}{FZKai-Z03.ttf}
+
+ \newcommand{\songti}{\CJKfamily{zhsong}}
+ \newcommand{\xbsong}{\CJKfamily{zhxbs}}
+ \newcommand{\dbsong}{\CJKfamily{zhdbs}}
+ \newcommand{\heiti}{\CJKfamily{zhhei}}
+ \newcommand{\dahei}{\CJKfamily{zhdh}}
+ \newcommand{\fangsong}{\CJKfamily{zhfs}}
+ \newcommand{\kaishu}{\CJKfamily{zhkai}}
+
+% 章节标题
+ \ctexset{
+     chapter={
+         format=\zihao{-2}\heiti ,
+         aftername=\par,
+         aftertitle=\par\rule{\linewidth}{1pt},
+         beforeskip=1em,
+         afterskip=2em,
+     },
+     section={
+         format=\zihao{-4}\heiti,
+         number={\bfseries\S~\arabic{section}},
+         beforeskip=1.2em,
+         afterskip=1em,
+     }
+ }
+
+% 页眉
+ \usepackage{fancyhdr}
+ \fancypagestyle{heading}{
+     \fancyhf{}
+     \fancyhead[CO]{\zihao{-5}\heiti\rightmark}
+     \fancyhead[CE]{\zihao{-5}\heiti\leftmark}
+    \fancyhead[RO,LE]{\zihao{-5}$\cdot$~\thepage~$\cdot$}
+     \renewcommand{\footrulewidth}{0pt}
+ }
+ \fancypagestyle{plain}{
+     \fancyhf{}
+     \fancyhead[RO,LE]{\zihao{-5}\thepage}
+     \renewcommand{\headrulewidth}{0pt}
+     \renewcommand{\footrulewidth}{0pt}
+ }
+
+% 图表、公式宏包
+ \usepackage{amsmath,amsthm,bm,hyperref,mathrsfs}
+ \usepackage{amssymb}
+ \usepackage{zhlineskip} % 中文排版时，数学公式间距调整
+ \usepackage{graphicx}
+ \usepackage{float}
+ \usepackage{subfigure} % 子图
+ \usepackage{tabularray} % 更好的表格
+
+\UseTblrLibrary{siunitx}
+\UseTblrLibrary{booktabs}
+
+%% 封面
+ \title{{\Huge{\textbf{笔记标题}}}
+ \\ ——副标题
+ }
+ \author{Pauline}
+ \date{}
+ 
+\linespread{1.25} % 行间距1.25倍
+\hypersetup{hidelinks} % 隐藏目录超链接红框
+
+\usepackage{zhlipsum}
+
+\begin{document}
+
+    \maketitle % 封面
+
+    % 目录
+     \newpage
+     \pagenumbering{Roman}
+     \setcounter{page}{1}
+     \tableofcontents
+     \newpage
+     \setcounter{page}{1}
+     \pagenumbering{arabic}
+
+
+    \pagestyle{heading}
+    \chapter{这是第一章}
+    \section{我是第一章第一节}
+    $$ x^2 + y^2 = z^2 $$
+    \section{我是第一章第二节}
+    \zhlipsum
+    \chapter{这是第二章}
+    \section{我是第二章第一节}
+    \zhlipsum
+    \section{我是第二章第二节}
+    \zhlipsum
+\end{document}
