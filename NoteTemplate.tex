@@ -1,5 +1,5 @@
 \documentclass[12pt,a4paper,openany,fontset=none]{ctexbook}
-\usepackage{fontspec}
+\usepackage{fontspec} % 字体
 \usepackage{xeCJK}
 
 % 页面设置
@@ -74,13 +74,18 @@
  }
 
 % 图表、公式宏包
- \usepackage{amsmath,amsthm,bm,hyperref,mathrsfs}
- \usepackage{amssymb}
+ \usepackage{amsmath,amssymb} % 数学公式
+ \usepackage{amsthm} % 数学定理
+ \usepackage{mathrsfs} % 数学花体
+ \usepackage{hyperref} % 超链接
  \usepackage{zhlineskip} % 中文排版时，数学公式间距调整
- \usepackage{graphicx}
- \usepackage{float}
+ \usepackage{graphicx,float} % 插图
  \usepackage{subfigure} % 子图
  \usepackage{tabularray} % 更好的表格
+ \usepackage{unicode-math}
+ % 使用\symbfit{}指令获得加粗斜体效果
+ % 使用\symbf{}指令获得加粗效果
+ % 使用\mathbfcal{}指令获得\mathcal效果
 
 \UseTblrLibrary{siunitx}
 \UseTblrLibrary{booktabs}
