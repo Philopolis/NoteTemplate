@@ -83,14 +83,39 @@
  \usepackage{subfigure} % 子图
  \usepackage{tabularray} % 更好的表格
  \usepackage{unicode-math}
- % 使用\symbfit{}指令获得加粗斜体效果
+ % 使用\bm{}指令获得加粗斜体效果
  % 使用\symbf{}指令获得加粗效果
  % 使用\mathbfcal{}指令获得\mathcal效果
+ \newcommand{\bm}{\symbfit}
+ \newcommand{\degree}{^\circ}
+ \renewcommand{\d}{\mathrm{d}}
 
 \UseTblrLibrary{siunitx}
 \UseTblrLibrary{booktabs}
 
-%% 封面
+% 定义环境 若输入数学公式，会存在一定程度的挤压字符大小问题
+ \usepackage[dvipsnames,svgnames]{xcolor}
+ \usepackage[strict]{changepage} % 提供一个 adjustwidth 环境
+ \usepackage{framed} % 实现方框效果
+ \newenvironment{notes}{
+    \zihao{5}\fangsong%
+    \def\FrameCommand{%
+    \hspace{1pt}%
+    {\color{black}\vrule width 2pt}%
+    \colorbox{lightgray}%
+    }%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+    \noindent\hspace{-4.55pt}% disable indenting first paragraph
+    \begin{adjustwidth}{}{7pt}%
+        \vspace{2pt}\vspace{2pt}%
+        \phantom{段...}%
+ }%
+ {%
+ \vspace{2pt}\end{adjustwidth}\endMakeFramed%
+ }%
+
+
+% 封面
  \title{{\Huge{\textbf{笔记标题}}}
  \\ ——副标题
  }
@@ -125,6 +150,9 @@
     \chapter{这是第二章}
     \section{我是第二章第一节}
     \zhlipsum
+    \begin{notes}
+        \zhlipsum
+    \end{notes}
     \section{我是第二章第二节}
     \zhlipsum
 \end{document}
