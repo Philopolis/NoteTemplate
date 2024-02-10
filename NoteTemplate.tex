@@ -1,4 +1,6 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt,a4paper,openany,fontset=none]{ctexbook}
+\usepackage{anyfontsize}
 \usepackage{fontspec} % 字体
 \usepackage{xeCJK}
 
@@ -24,13 +26,13 @@
      ]
  \setCJKmonofont{FZFangSong-Z02.ttf}         % 方正仿宋_GBK
 
- \setCJKfamilyfont{zhsong}{FZShuSong-Z01.ttf}
- \setCJKfamilyfont{zhxbs}{Source Han Serif SC Bold.otf}
- \setCJKfamilyfont{zhdbs}{Source Han Serif SC Heavy.otf}
- \setCJKfamilyfont{zhhei}{FZHei-B01.ttf}
- \setCJKfamilyfont{zhdh}{Source Han Sans SC Bold.otf}
- \setCJKfamilyfont{zhfs}{FZFangSong-Z02.ttf}
- \setCJKfamilyfont{zhkai}{FZKai-Z03.ttf}
+ \setCJKfamilyfont{zhsong}{FZShuSong-Z01}
+ \setCJKfamilyfont{zhxbs}{Source Han Serif SC Bold}
+ \setCJKfamilyfont{zhdbs}{Source Han Serif SC Heavy}
+ \setCJKfamilyfont{zhhei}{FZHei-B01}
+ \setCJKfamilyfont{zhdh}{Source Han Sans SC Bold}
+ \setCJKfamilyfont{zhfs}{FZFangSong-Z02}
+ \setCJKfamilyfont{zhkai}{FZKai-Z03}
 
  \newcommand{\songti}{\CJKfamily{zhsong}}
  \newcommand{\xbsong}{\CJKfamily{zhxbs}}
@@ -43,26 +45,31 @@
 % 章节标题
  \ctexset{
      chapter={
-         format=\zihao{-2}\heiti ,
+         format=\zihao{-2}\dahei,
          aftername=\par,
          aftertitle=\par\rule{\linewidth}{1pt},
          beforeskip=1em,
          afterskip=2em,
      },
      section={
-         format=\zihao{-4}\heiti,
+         format=\zihao{4}\heiti,
          number={\bfseries\S~\arabic{section}},
          beforeskip=1.2em,
          afterskip=1em,
-     }
+     },
+     subsection={
+        format =\zihao{-4}\heiti,
+        beforeskip=1em,
+        afterskip=1em,
+     },
  }
 
-% 页眉
+% 页眉、页脚
  \usepackage{fancyhdr}
  \fancypagestyle{heading}{
      \fancyhf{}
-     \fancyhead[CO]{\zihao{-5}\heiti\rightmark}
-     \fancyhead[CE]{\zihao{-5}\heiti\leftmark}
+     \fancyhead[CO]{\zihao{-5}\dahei\rightmark}
+     \fancyhead[CE]{\zihao{-5}\dahei\leftmark}
     \fancyhead[RO,LE]{\zihao{-5}$\cdot$~\thepage~$\cdot$}
      \renewcommand{\footrulewidth}{0pt}
  }
@@ -82,23 +89,27 @@
  \usepackage{graphicx,float} % 插图
  \usepackage{subfigure} % 子图
  \usepackage{tabularray} % 更好的表格
- \usepackage{unicode-math}
- % 使用\bm{}指令获得加粗斜体效果
+ \usepackage[math-style=ISO]{unicode-math}
+ % 使用\symbfit{}指令获得加粗斜体效果
  % 使用\symbf{}指令获得加粗效果
  % 使用\mathbfcal{}指令获得\mathcal效果
- \newcommand{\bm}{\symbfit}
+ % 使用\symup{}指令使大写希腊字母获得正体效果
+ \newcommand{\bm}{\mathbfit}
  \newcommand{\degree}{^\circ}
  \renewcommand{\d}{\mathrm{d}}
+ \renewcommand{\i}{\mathrm{i}}
+ \newcommand{\e}{\mathrm{e}}
+ %\setmathfont{XITS Math}  % 数学字体， Times 风格
 
 \UseTblrLibrary{siunitx}
 \UseTblrLibrary{booktabs}
 
-% 定义环境 若输入数学公式，会存在一定程度的挤压字符大小问题
+% 定义环境
  \usepackage[dvipsnames,svgnames]{xcolor}
  \usepackage[strict]{changepage} % 提供一个 adjustwidth 环境
  \usepackage{framed} % 实现方框效果
  \newenvironment{notes}{
-    \zihao{5}\fangsong%
+    \zihao{5}\kaishu%
     \def\FrameCommand{%
     \hspace{1pt}%
     {\color{black}\vrule width 2pt}%
@@ -113,7 +124,7 @@
  {%
  \vspace{2pt}\end{adjustwidth}\endMakeFramed%
  }%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 封面
  \title{{\Huge{\textbf{笔记标题}}}
@@ -131,6 +142,20 @@
 
     \maketitle % 封面
 
+    % 前言
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+
+    \begin{center}
+        \Huge\textbf{前言}
+    \end{center} \qquad 
+    这是笔记的前言部分。
+    \begin{flushright}
+        \begin{tabular}{c}
+            Pauline
+        \end{tabular}
+    \end{flushright}
+
     % 目录
      \newpage
      \pagenumbering{Roman}
@@ -142,6 +167,8 @@
 
 
     \pagestyle{heading}
+
+
     \chapter{这是第一章}
     \section{我是第一章第一节}
     $$ x^2 + y^2 = z^2 $$
